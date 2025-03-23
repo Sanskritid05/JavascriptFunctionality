@@ -19,12 +19,21 @@
         poster = document.getElementById("finalPoster")
 
         if (movieName === "RaOne") {
-            poster.src = "images/max_movie_poster.png"
-        } else if(movieName === "Vande"){
-            poster.src = "images/ui_movie_poster.png"
-        }else{
-            poster.src = " "
+            poster.src = "public/images/max_movie_poster.png";
+        } else if (movieName === "Vande") {
+            poster.src = "public/images/ui_movie_poster.png";
+        } else {
+            poster.src = "images/default_poster.png"; // Default poster if no selection
         }
+
+        // Debugging output
+        console.log("Selected movie:", movieName);
+        console.log("Poster source:", poster.src);
+
+        // Handle image loading errors
+        poster.onerror = function() {
+            this.src = "images/default_poster.png"; // Fallback image
+        };
     }
 
 </script>
