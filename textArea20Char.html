@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <dt>Comment Section </dt>
+    <textarea id="txtCommentSection" placeholder="Please Enter your text"></textarea>
+    <dd id = "lblMsg"></dd>
+    <script>
+        document.getElementById("txtCommentSection").addEventListener("input" , function(){
+            let data = this.value
+            let count = data.length
+            const msg = document.getElementById("lblMsg")
+            var maxlength = 20
+            if (count === maxlength) {
+                msg.innerHTML = `<span style = "color : red ">Word Limit Exceeded</span>`
+                document.getElementById("txtCommentSection").disabled = true
+                
+            } else {
+                const remaining = maxlength - count
+                msg.textContent = `Only ${remaining} left !`
+                msg.style.color = "green"
+            }
+        })
+    </script>
+</body>
+</html>
