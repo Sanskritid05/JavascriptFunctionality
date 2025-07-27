@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Payment Details</legend>
+        <dl>
+            <dt>Card Number</dt>
+            <dd><input type="text" id="card"></dd>
+
+            <!-- cvv div  -->
+            <div id = "cvvContainer" style="display: none;">
+               <dt>CVV</dt>
+                <dd><input type="text" id="cvv" ></dd> 
+            </div>
+            <!-- expiry div  -->
+            <div id = "expiryContainer"  style="display: none;">
+                <dt>Expiry Date</dt>
+                <dd>
+                    <select id="expiry">
+                        <option value="Choose Expiry" >Choose Expiry</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </dd>
+            </div>
+            
+        </dl>
+        <button id="btnPay" style="display: none;">Pay</button>
+        <label id = "lblMsg"></label>
+    </fieldset>
+    <script>
+        document.getElementById("card").addEventListener("blur" , function(){
+            let card = this.value 
+            let cvvContainer = document.getElementById("cvvContainer")
+            let msg = document.getElementById("lblMsg")
+
+            if(card === "1231231231"){
+                cvvContainer.style.display = "block"
+                msg.textContent = ""
+            }else{
+                msg.textContent = "INVALID CARD NUMBER"
+                msg.style.color = "red"
+            }
+            document.getElementById("cvv").addEventListener("blur" , function(){
+                let cvv = this.value
+                let expiryContainer = document.getElementById("expiryContainer")
+
+                if(cvv === "222"){
+                    expiryContainer.style.display = "block"
+                    msg.textContent = ""
+                }else{
+                    msg.textContent = "INVALID CVV NUMBER"
+                    msg.style.color = "red"
+                }
+            })
+            document.getElementById("expiry").addEventListener("blur" , function(){
+                let expiry = this.value
+                let btnPay = document.getElementById("btnPay")
+                if(expiry !=  "Choose Expiry"){
+                    btnPay.style.display = "block"
+                    msg.textContent = ""
+                }else{
+                    msg.textContent = "INVALID EXPIRY NUMBER"
+                    msg.style.color = "red"
+                    btnPay.style.display = "none"
+                }
+            })
+        })
+        document.getElementById("btnPay").addEventListener("click" , function(){
+            let msg = document.getElementById("lblMsg")
+            msg.textContent = "PAYMENT DONE SUCCESSFULLY"
+            msg.style.color = "green"
+        })
+    </script>
+</body>
+</html>
